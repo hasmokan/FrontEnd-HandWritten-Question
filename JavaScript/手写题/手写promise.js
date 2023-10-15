@@ -1,9 +1,9 @@
 /*
  * @Author: hasmokan 1021056159@qq.com
  * @Date: 2023-10-15 19:51:11
- * @LastEditTime: 2023-10-15 21:28:51
+ * @LastEditTime: 2023-10-16 00:46:28
  * @LastEditors: hasmokan 1021056159@qq.com
- * @FilePath: \JavaScript\手写题\手写promise.js
+ * @FilePath: \hasmokan的案例\JavaScript\手写题\手写promise.js
  * @Description: 手写promise
  */
 
@@ -20,9 +20,36 @@ const REJECTED = 'rejected'
  * @param {Function} callback
  */
 function runMicroTask(callback) {
-  callback()
+  // 面试时候可以用 setTimeout(() => {callback, 0})来代替 十分粗糙 实现异步
+
+  // 参照vue写法
+  // 判断node环境
+  if (process && process.nextTick) { // node环境
+    process.nextTick(callback)
+  }
+  else if (MutationObserver) { // 浏览器环境
+    const p = document.createElement('p')
+    const observer = new MutationObserver(callback)
+    observer.observe(p, {
+      childList: true //观察该元素的内部变化
+    })
+    p.innerHTML = 1
+  }
+  else { // 其他环境
+    setTimeout(callback, 0)
+  }
+
 }
 
+/**
+ * @Description: 判断链式调用中返回的是不是Promise对象
+ * @param {any} obj
+ * @return {Boolean}
+ */
+function isPromise(obj) {
+  // Promise A+规范 是对象并且有then方法 
+  return !!(obj && typeof obj === 'object' && typeof obj.then === 'function')
+}
 class myPromise {
   /**
    * @Description: 创建一个Promise
@@ -79,7 +106,7 @@ class myPromise {
    * @param {Function} resolve 让then函数返回的Promise成功 
    * @param {Function} reject 让then函数返回的Promise失败
    */
-  _pushHandlers(executor, state, resolve, reject) {
+  _pushHandler(executor, state, resolve, reject) {
     this._handlers.push({
       executor,
       state,
@@ -111,18 +138,30 @@ class myPromise {
    * @Description: 处理一个handler
    * @param {Object} handler
    */
-  _runOneHandler(handler) {
+  _runOneHandler({ executor, state, resolve, reject }) {
     runMicroTask(() => {
       if (this._state !== handler.state) {
         // 状态不匹配,不处理
         return
       }
-      console.log(this._state)
-      console.log(handler);
+      // 状态一致但传的不是函数
+      if (typeof handler.executor !== 'function') {
+        this._state === FULFILLED ? handler.resolve(this._value) : handler.reject(this._value)
+        return
+      }
+      try { // 实现链式调用
+        const result = executor(this._value)
+        if(isPromise(result)){
+          result.then(resolve, reject)
+        }else{ // 不是Promise对象
+          resolve(result)
+        }
+        resolve(result)
+      } catch (error) {
+        reject(error) // 执行的期间有错
+      }
+
     })
-    if (typeof handler.executor !== 'function') {
-      this._state === FULFILLED ? handler.resolve(this._value) : handler.reject(this._value)
-    }
   }
 
   /**
@@ -134,8 +173,8 @@ class myPromise {
   then(onFulfilled, onRejected) {
     return new myPromise((resolve, reject) => { // 为了支持链式调用
       // 放入微任务队列
-      this._pushHandlers(onFulfilled, FULFILLED, resolve, reject)
-      this._pushHandlers(onRejected, REJECTED, resolve, reject)
+      this._pushHandler(onFulfilled, FULFILLED, resolve, reject)
+      this._pushHandler(onRejected, REJECTED, resolve, reject)
       this._runHandlers(); // 改变状态的时候触发
     })
   }
@@ -146,6 +185,9 @@ const promise = new myPromise((resolve, reject) => {
     resolve(1)
   })
 })
-promise.then(function A1() { }, undefined)
-promise.then(function A2() { }, function B2() { })
+promise.then(function A1() { }, undefined).then(function A2() { }, function B2() { })
 
+// setTimeout(() => {console.log(1);})
+// runMicroTask(() => {console.log(2);})
+
+// console.log(3);
