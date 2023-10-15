@@ -1,0 +1,49 @@
+<!--
+ * @Author: hasmokan 1021056159@qq.com
+ * @Date: 2023-10-10 12:52:03
+ * @LastEditors: hasmokan 1021056159@qq.com
+ * @LastEditTime: 2023-10-10 13:22:25
+ * @FilePath: \JavaScript\原型链继承.html
+ * @Description: 原型链继承法
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型链</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  function Parent() {
+    this.name = 'hasmokan'
+  }
+
+  Parent.prototype.getName = function () {
+    console.log(this.name);
+  }
+
+  function Child() {
+
+  }
+
+  Child.prototype = new Parent()
+
+  let child = new Child()
+
+  child.getName()
+
+  console.log(child.__proto__ instanceof Parent);
+  console.log(new Parent().constructor);
+  console.log(Object.constructor);
+  console.log(Function.prototype);
+  console.log(new Parent().__proto__)
+  console.log(Parent.prototype.constructor)
+</script>
+
+</html>

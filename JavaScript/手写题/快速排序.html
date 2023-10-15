@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速排序</title>
+</head>
+
+<body>
+  <div>123</div>
+</body>
+
+<script>
+  let arr = [132, 321, 31231, 21321, 2, 232, 4, 24]
+  let num = arr.length - 1
+  // while (num--) {
+  //   arr.push(num)
+  // }
+  // console.log(arr)
+
+  let quickSort = (arr, left, right) => {
+    if (left >= right) return
+
+    let i = left - 1, j = right + 1, x = arr[Math.floor((left + right) / 2)]
+    while (i < j) {
+      do i++
+      while (arr[i] < x)
+      do j--
+      while (arr[j] > x)
+
+      if (i < j) [arr[i], arr[j]] = [arr[j], arr[i]]
+
+    }
+
+    quickSort(arr, left, j)
+    quickSort(arr, j + 1, right)
+  }
+
+  quickSort(arr, 0, num)
+  console.log(arr)
+</script>
+
+</html>

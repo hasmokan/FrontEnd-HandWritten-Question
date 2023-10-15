@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  /*总结
+  __proto__ 存在于所有对象上，prototype 只存在于函数上
+  __proto__ 用来表示当前对象的原型对象是什么，在检索属性时方便在原型链上递归向上去查找，实现了 obj.__proto__.__proto__... 原型链
+  prototype 用来表示使用此构造函数初始化的对象继承自哪个原型对象
+  __proto__ 并不是 ECMAScript 语法规范的标准，只是浏览器厂商实现的一种便于访问或修改对象内部 [[Prototype]] 的访问器属性，建议使用 Object.getPrototypeOf 替代
+  prototype 是 ECMAScript 语法规范的标准
+
+  顺带总结一波原型
+
+  每个对象内部都有一个用来存放该对象原型的内部属性 [[Prototype]]，可以通过 obj.__proto__ 或 Object.get​PrototypeOf / Object.setPrototypeOf 来读写。
+  原型的本质是对象，每个原型对象自身也可能存在原型，以此类推形成原型链。
+  原型链的长度是有限的，且最终一定指向 null。
+  所有原型对象的根原型对象是 Object 原型对象, 它被内置在 Object.prototype 属性上。
+  每个函数自身都会有一个 prototype 属性，用来给其创建的对象赋予原型（即设置其创建的对象的内部属性 [[Prototype]]）。
+  函数 prototype 属性值的 constructor 属性指向自身。
+  构造函数 Function 的 prototype 属性和其原型（__proto__）都指向 Function 原型对象。
+  Function 原型对象 比较特殊，是一个匿名函数，它可以先于/独立于 Function 产生，其原型依然是 Object 原型对象
+
+  作者：RunningCoder
+  链接：https://juejin.cn/post/6844903869428793358
+  来源：稀土掘金
+  著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+  */
+
+  // 方法一： 用class和constructor / 或者用call和apply superType.call(this) 调用父类的构造函数
+  // 方法二： 把属性放在子类里面就不会变为原型属性共享了
+  let superType = function () {
+    this.friend = [11, 22, 33]
+  }
+
+  let subType = function () {
+
+  }
+
+  subType.prototype = new superType()
+
+  let instance1 = new subType()
+  let instance2 = new subType()
+  instance1.friend.push(123)
+  console.log(instance1.friend, instance2.friend);
+
+</script>
+
+</html>

@@ -1,0 +1,45 @@
+<!--
+ * @Author: hasmokan 1021056159@qq.com
+ * @Date: 2023-10-10 23:59:14
+ * @LastEditors: hasmokan 1021056159@qq.com
+ * @LastEditTime: 2023-10-11 20:22:18
+ * @FilePath: \undefinedc:\Users\hasmokan\Desktop\hasmokan的案例\JavaScript\快排练习场.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速排序</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  let arr = [21312, 3213, 45, 24, 2, 5, 35, 57575, 44, 3, 3, 2]
+
+  let quickSort = (arr, left, right) => {
+    if (left >= right) return
+    let i = left - 1, j = right + 1, x = arr[Math.floor((left + right) / 2)]
+
+    while (i < j) {
+      do i++
+      while (arr[i] < x)
+      do j--
+      while (arr[j] > x)
+
+      if (i < j) [arr[i], arr[j]] = [arr[j], arr[i]]
+    }
+
+    quickSort(arr, left, j)
+    quickSort(arr, j + 1, right)
+  }
+  quickSort(arr, 0, arr.length - 1)
+  console.log(arr)
+</script>
+
+</html>
