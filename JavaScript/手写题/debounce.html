@@ -1,0 +1,66 @@
+<!--
+ * @Author: hasmokan 1021056159@qq.com
+ * @Date: 2023-10-19 19:22:43
+ * @LastEditTime: 2023-10-19 19:55:22
+ * @LastEditors: hasmokan 1021056159@qq.com
+ * @FilePath: \hasmokan的案例\JavaScript\手写题\debounce.html
+ * @Description: 手写防抖
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>debounce</title>
+  <style>
+    .myDiv {
+      .mybutton {
+        box-sizing: border-box;
+        background-color: cadetblue;
+        color: black;
+        border: 2px solid gold;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .mybutton:hover {
+        background-color: aquamarine;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="myDiv">
+    <!-- <button class="mybutton" onclick="debounce(clickThenLog, 2000)()">点击我!</button> -->
+    <button class="mybutton">点击我</button>
+  </div>
+
+</body>
+
+
+<script>
+  let button = document.querySelector('.mybutton')
+  button.addEventListener('click', debounce(clickThenLog, 2000))
+  function clickThenLog() {
+    console.log('hellp');
+  }
+
+  function debounce(fn, delay) {
+    let timer;
+    return function () {
+      let args = arguments
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        fn.apply(this, args)
+      }, delay)
+    }
+  }
+
+</script>
+
+</html>

@@ -1,7 +1,7 @@
 /*
  * @Author: hasmokan 1021056159@qq.com
  * @Date: 2023-10-15 19:51:11
- * @LastEditTime: 2023-10-16 00:46:28
+ * @LastEditTime: 2023-10-16 00:51:57
  * @LastEditors: hasmokan 1021056159@qq.com
  * @FilePath: \hasmokan的案例\JavaScript\手写题\手写promise.js
  * @Description: 手写promise
@@ -151,9 +151,9 @@ class myPromise {
       }
       try { // 实现链式调用
         const result = executor(this._value)
-        if(isPromise(result)){
+        if (isPromise(result)) {
           result.then(resolve, reject)
-        }else{ // 不是Promise对象
+        } else { // 不是Promise对象
           resolve(result)
         }
         resolve(result)
@@ -191,3 +191,13 @@ promise.then(function A1() { }, undefined).then(function A2() { }, function B2()
 // runMicroTask(() => {console.log(2);})
 
 // console.log(3);
+
+myPromise.deferred = function () {
+  var result = {};
+  result.promise = new myPromise(function (resolve, reject) {
+    result.resolve = resolve;
+    result.reject = reject;
+  });
+
+  return result;
+}
