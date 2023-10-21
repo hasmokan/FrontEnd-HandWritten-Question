@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    /* 设置两栏布局 */
+    .container {
+      font-size: 0;
+      /* 修复inline-block元素间距问题 */
+    }
+
+    /* 主要内容区域样式 */
+    .main,
+    .sidebar {
+      display: inline-block;
+      vertical-align: top;
+      /* 使两列顶部对齐 */
+      width: 49%;
+      /* 调整宽度以适应两栏布局 */
+      padding: 20px;
+      box-sizing: border-box;
+      /* 计算内边距和边框在内的宽度 */
+    }
+
+    /* 清除container的字体大小设置 */
+    .container::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="main">
+      <h2>主要内容</h2>
+      <p>这是主要内容区域。</p>
+    </div>
+    <div class="sidebar">
+      <h2>侧边栏</h2>
+      <p>这是侧边栏区域。</p>
+    </div>
+  </div>
+
+</body>
+
+</html>

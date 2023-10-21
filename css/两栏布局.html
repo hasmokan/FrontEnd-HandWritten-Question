@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>两栏布局</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* color */
+    .parent {
+      background-color: rgb(173, 233, 158);
+    }
+
+    .left {
+      background-color: antiquewhite;
+    }
+
+    .right {
+      background-color: blue;
+    }
+
+    /* flex布局 */
+    /* .parent {
+      min-width: 1000px;
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .parent .left {
+      width: 240px;
+      height: 100%;
+    }
+
+    .parent .right {
+      flex: 1;
+    } */
+
+    /* float布局 */
+    /* .parent {
+      min-width: 1000px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .left {
+      float: left;
+      width: 240px;
+      height: 100%;
+    }
+
+    .right {
+      float: right;
+      width: calc(100% - 240px);
+      height: 100%;
+    } */
+
+
+    /* margin absolute */
+
+    /* .parent {
+      position: relative;
+      min-width: 100px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .left {
+      width: 240px;
+      height: 100%;
+    }
+
+    .right {
+      overflow: hidden;
+      position: absolute;
+      width: calc(100% - 240px);
+      height: 100%;
+      top: 0;
+      left: 240px;
+    } */
+
+    /* inline-block */
+
+    .parent {
+      min-width: 1000px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .left {
+      display: inline-block;
+      width: 240px;
+      height: 100%;
+    }
+
+    .right {
+      display: inline-block;
+      width: calc(100% - 240px);
+      height: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="parent">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+
+
+</body>
+
+<script>
+
+</script>
+
+</html>
