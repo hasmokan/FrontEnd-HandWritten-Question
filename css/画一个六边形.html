@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画一个六边形</title>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .center {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .t1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 52px solid transparent;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 52px solid red;
+
+    }
+
+    .t2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 52px solid transparent;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 52px solid red;
+      transform: rotate(60deg);
+    }
+
+    .t3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 52px solid transparent;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 52px solid red;
+      transform: rotate(120deg);
+    }
+
+    .t4 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 52px solid transparent;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 52px solid red;
+      transform: rotate(180deg);
+    }
+
+    .t5 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 52px solid transparent;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 52px solid red;
+      transform: rotate(-60deg);
+    }
+
+    .t6 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 52px solid transparent;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 52px solid red;
+      transform: rotate(-120deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="center">
+    <div class="container">
+      <div class="t1"></div>
+      <div class="t2"></div>
+      <div class="t3"></div>
+      <div class="t4"></div>
+      <div class="t5"></div>
+      <div class="t6"></div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
