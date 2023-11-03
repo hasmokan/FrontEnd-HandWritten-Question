@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  var x = 3;
+  var y = 4;
+  var obj = {
+    x: 1,
+    y: 6,
+    getX: function () {
+      console.log(this);
+      var x = 5;
+      return function () {
+        console.log(this);
+        return this.x;
+      }();
+    },
+    getY: function () {
+      var y = 7;
+      return this.y;
+    }
+  }
+  console.log(obj.getX()) // 3
+  // console.log(obj.getY()) // 6
+
+</script>
+
+</html>
