@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直水平居中</title>
+
+    <style>
+        .wrapper{
+            writing-mode: vertical-lr;
+            text-align: center;
+            background-color: azure;
+            height: 100vh;
+            width: 100vw;
+        }
+        .wrapper-inner{
+            writing-mode: horizontal-tb;
+            text-align: center;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+        .inner{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            /* margin: auto; */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper-inner">
+            <div class="inner"></div>
+            <div class="inner"></div>        
+            <div class="inner"></div>
+        </div>
+
+    </div>
+</body>
+</html>
