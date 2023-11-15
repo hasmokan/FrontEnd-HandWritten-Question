@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正方形</title>
+
+  <style>
+    .box {
+      display: flex;
+    }
+
+
+    .box div {
+      margin: 10px;
+    }
+
+    .box1 {
+      position: relative;
+      background-color: red;
+      width: 20vw;
+      height: 20vw;
+      z-index: -3;
+    }
+
+    .box1:before {
+      content: "";
+      background-color: blue;
+      display: block;
+      width: 5vw;
+      height: 5vw;
+      z-index: -1;
+    }
+
+    .box1::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+      background-color: green;
+      display: block;
+      width: 10vw;
+      height: 10vw;
+      z-index: -2;
+    }
+
+    .box2 {
+      position: relative;
+      background-color: red;
+      width: 20vw;
+      height: 20vw;
+      z-index: -3;
+    }
+
+    .box2:before {
+      position: absolute;
+      content: "";
+      background-color: blue;
+      display: block;
+      width: 5vw;
+      height: 5vw;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .box2::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+      background-color: green;
+      display: block;
+      width: 10vw;
+      height: 10vw;
+      z-index: -2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+
+    .box3 {
+      position: relative;
+      background-color: red;
+      width: 20vw;
+      height: 20vw;
+      z-index: -3;
+    }
+
+    .box3:before {
+      position: absolute;
+      content: "";
+      background-color: blue;
+      display: block;
+      width: 5vw;
+      height: 5vw;
+      z-index: -1;
+      right: 0;
+      bottom: 0;
+    }
+
+    .box3::after {
+      position: absolute;
+      content: "";
+      background-color: green;
+      display: block;
+      width: 10vw;
+      height: 10vw;
+      z-index: -2;
+      right: 0;
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  一、3个正方形盒子每个盒子各有1px外边距 颜色大小自定义,盒子尺寸跟随窗口大小变化实现效果如下
+  <div class="box">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+  </div>
+</body>
+
+</html>

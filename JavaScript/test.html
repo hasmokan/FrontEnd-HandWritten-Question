@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  var a = function () { this.b = 3 }
+  var c = new a()
+  a.prototype.b = 9
+  var b = 7
+  a()
+
+  //分别输出什么？为什么？
+  console.log(b)
+  console.log(c.b)
+
+
+
+</script>
+
+</html>

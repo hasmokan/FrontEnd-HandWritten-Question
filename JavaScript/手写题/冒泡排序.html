@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冒泡排序</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  let arr = [213, 2, 23, 3, 4, 4, 2, 1, 1, 1, 14, 1, 4, 29]
+
+
+
+  let sort = (arr) => {
+    let len = arr.length
+    for (let i = 0; i < len; i++) {
+      // flag 优化
+      let flag = 0
+      for (let j = i; j < len; j++) {
+        if (arr[i] > arr[j]) {
+          [arr[i], arr[j]] = [arr[j], arr[i]]
+          flag = 1
+        }
+      }
+    }
+
+    // flag 优化
+    if (flag === 0) {
+      return
+
+    }
+
+  }
+  sort(arr)
+  console.log(arr)
+
+</script>
+
+</html>
