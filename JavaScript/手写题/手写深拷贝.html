@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>deepclone</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  let obj1 = {};
+  let obj2 = {
+    b: obj1,
+  };
+  obj1.a = obj2;
+
+  let deepClone = (obj = {}) => {
+    if (!obj || typeof obj !== "object") return;
+
+    let newObj = Array.isArray(obj) ? [] : {};
+
+    for (let key in obj) {
+      // 判断是否是自身的属性而不是原型链上的属性
+      if (obj.hasOwnProperty(key)) {
+        newObj[key] =
+          typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key];
+      }
+    }
+    return newObj;
+  };
+
+  console.log(deepClone(obj1));
+
+</script>
+
+</html>
