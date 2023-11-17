@@ -1,11 +1,22 @@
-function add() {
-  let args = Array.prototype.slice.call(arguments)
-
-  let inner = function () {
-    args.push(...arguments)
-    return inner
-  }
-  return inner // 这里会进入调用 就像递归一样 即 尾递归
+function add(a, b, c, d) {
+  return a + b + c + d
 }
 
-console.log(add(1)(2)(3)(4));
+
+function curry(fn){
+  return function curried(...args){
+    if(fn.length <= args.length){
+      return fn.apply(this, args)
+    } else{
+      return function(...newArgs){
+        // 再次柯里化， 尾递归
+        return curried.apply(this, args.concat(newArgs))
+      }
+    }
+  }
+}
+
+
+let curryAdd = curry(add)
+
+console.log(curryAdd(1)(2)(3)(4));
