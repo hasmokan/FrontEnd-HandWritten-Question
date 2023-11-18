@@ -9,7 +9,7 @@ function deepClone(obj = {}) {
 	const map = new WeakMap();
 
 	const copy = (value) => {
-		if (!value || typeof value !== "object") return value;
+		if (value === null || typeof value !== "object") return value;
 
 		if (map.has(value)) {
 			return map.get(value);
@@ -20,9 +20,10 @@ function deepClone(obj = {}) {
 
 		for (let key in value) {
 			if (value.hasOwnProperty(key)) {
-				result[key] = copy(value);
+				result[key] = copy(value[key]);
 			}
 		}
+	
 
 		return result;
 	};
@@ -34,7 +35,7 @@ let newObj = deepClone(obj);
 console.log(newObj.arr !== obj.arr);
 console.log(newObj.sub !== obj.sub);
 console.log(newObj.arr[3] !== obj);
-console.log(newObj.arr[3] !== newObj);
+console.log(newObj.arr[3] === newObj);
 
 /*手写无法处理循环的深拷贝*/
 // let deepClone = (obj = {}) => {
