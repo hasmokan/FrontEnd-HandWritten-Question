@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+  function convertToTree(arr) {
+	const map = new Map();
+	const roots = [];
+
+	for (const node of arr) {
+		const { id, pid, name } = node;
+		const newNode = { id, name, children: [] };
+		map.set(id, newNode);
+
+		if (pid === null) {
+			roots.push(newNode);
+		} else {
+			const parent = map.get(pid);
+			parent.children.push(newNode);
+		}
+	}
+
+	return roots;
+}
+
+const arr = [
+	{ id: 1, pid: 1, name: "A" },
+	{ id: 2, pid: 1, name: "B" },
+	{ id: 3, pid: null, name: "C" },
+	{ id: 4, pid: 3, name: "D" },
+	{ id: 5, pid: 3, name: "E" },
+];
+
+const tree = convertToTree(arr);
+console.log(tree);
+</script>
+</html>
