@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+
+  function jsonp(url, callbackFunctionName, callback) {
+    // 提前定义回调函数
+    window[callbackFunctionName] = callback;
+    const scriptOfjsonp = document.createElement('script')
+
+    scriptOfjsonp.src = `http://localhost:3001/${url}?callback=${callbackFunctionName}`
+
+    document.body.appendChild(scriptOfjsonp)
+  }
+
+
+  jsonp('api/jsonp', 'handleResponse', function (data) {
+    console.log(data)
+  })
+</script>
+
+</html>

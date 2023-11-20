@@ -23,7 +23,6 @@ function deepClone(obj = {}) {
 				result[key] = copy(value[key]);
 			}
 		}
-	
 
 		return result;
 	};
@@ -37,18 +36,25 @@ console.log(newObj.sub !== obj.sub);
 console.log(newObj.arr[3] !== obj);
 console.log(newObj.arr[3] === newObj);
 
-/*手写无法处理循环的深拷贝*/
-// let deepClone = (obj = {}) => {
-// 	if (!obj || typeof obj !== "object") return;
+let deepClone = (obj) => {
+	let map = new WeakMap();
 
-// 	let newObj = Array.isArray(obj) ? [] : {};
+	let copy = (value) => {
+		if (obj === null || typeof obj !== "object") return value;
 
-// 	for (let key in obj) {
-// 		// 判断是否是自身的属性而不是原型链上的属性
-// 		if (obj.hasOwnProperty(key)) {
-// 			newObj[key] =
-// 				typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key];
-// 		}
-// 	}
-// 	return newObj;
-// };
+		if (!map.has(value)) return map.get(value);
+
+		let newObj = Array.isArray(value) ? [] : {};
+
+		map.set(value, newObj);
+
+		for (let key in value) {
+			if (obj.hasOwnProperty(key)) {
+				newObj[key] = copy(value[key]);
+			}
+		}
+		return result;
+	};
+
+	return copy(obj);
+};
