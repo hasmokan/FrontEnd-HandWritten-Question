@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>三角形</title>
   <style>
+    /* border */
     .t {
       width: 0;
       height: 0;
@@ -13,13 +14,56 @@
       border-top: 250px solid transparent;
       border-left: 250px solid transparent;
       border-right: 250px solid transparent;
+    }
+
+    /* clippath */
+    .clippath{
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      clip-path: polygon(0 0,100% 0, 0 100%);
 
     }
+    /* rotate + overflow */
+    .parent{
+      width: 200px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    
+    }
+    .child{
+      top: -100px;
+      left: -100px;
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      transform: rotate(45deg);
+      background-color: red;
+    }
+    /* linear-gradient */
+    .triangle{
+      width: 100px;
+      height: 100px;
+      background-image: linear-gradient(45deg, orangered 50%, rgba(255, 255, 255) 50%);
+      background-repeat: no-repeat;
+      background-position: top left bottom left;
+    }
+
+
   </style>
 </head>
 
 <body>
   <div class="t"></div>
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+  <div class="clippath"></div>
+
+  <div class="triangle">
+
+  </div>
 </body>
 
 </html>
