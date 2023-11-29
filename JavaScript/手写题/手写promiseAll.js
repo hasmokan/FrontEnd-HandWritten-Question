@@ -40,4 +40,3 @@ promiseAll([p3, p1, p2]).then(res => {
 })
 
 
-
