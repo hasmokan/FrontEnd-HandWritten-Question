@@ -1,44 +1,71 @@
-function createTask(i) {
-  return new Promise((resolve, reject) => {
-    () => {
-      setTimeout(() => {
-        resolve(i)
-      }, 2000)
-    }
-  })
-}
+// // 快手
 
+// const queue = [];
+// let maxCon = 3;
+// let running = 0;
+// const processQueue = () => {
+// 	if (running >= maxCon) {
+// 		return;
+// 	}
 
-function taskQueue() {
-  this.max = 10
-  this.queue = []
+// 	const job = queue.shift();
 
-  this.add = (task) => {
-    this.queue.push(task)
-  }
+// 	if (!job) {
+// 		return;
+// 	}
 
-  this.run = () => {
-    const length = this.queue.length
-    if (!length) return
+// 	running += 1;
+// 	request(job.param).then(
+// 		(r) => {
+// 			running -= 1;
+// 			job.resolve(r);
+// 			processQueue();
+// 		},
+// 		(err) => {
+// 			running -= 1;
+// 			job.reject(err);
+// 			processQueue();
+// 		}
+// 	);
+// };
+// function myRequest(param) {
+// 	return new Promise((resolve, reject) => {
+// 		queue.push({
+// 			param,
+// 			resolve,
+// 			reject,
+// 		});
+// 		processQueue();
+// 	});
+// }
 
-    const min = Math.min(this.max, length)
-    for (let i = 0; i < min; i++) {
-      this.max--
-      const task = this.queue.shift()
-      task().then(res => {
-        console.log(res)
-      }).catch(error => {
-        console.log(error)
-      }).finally(() => {
-        this.max++
-        this.run()
-      })
-    }
-  }
-}
+// 渡一
+// 传入url数组
 
-const taskqueue = new taskQueue()
+function myRequest(urls, maxNum) {
+	const result = [];
+	let index = 0;
+	let cnt = 0;
+	async function request() {
+		if (index === urls.length) return;
+		const i = index;
+		const url = urls[index++];
 
-for (let i = 0; i < 20; i++) {
-  taskqueue.add(createTask(i))
+		try {
+			const res = await fetch(url);
+			result[i] = res;
+		} catch (err) {
+			result[i] = err;
+		} finally {
+			cnt++;
+			if (cnt === urls.length) {
+				resolve(result);
+			}
+			request();
+		}
+	}
+	const times = Math.min(maxNum, url.length);
+	for (let i = 0; i < times; i++) {
+		request();
+	}
 }
