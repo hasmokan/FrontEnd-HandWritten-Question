@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>axios fetch ajax</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+	// function ajax(url, method, callback, data) {
+	// 	var xhr = new XMLHttpRequest();
+	// 	xhr.onreadystatechange = function () {
+	// 		if (xhr.readyState === 4) {
+	// 			if (xhr.status >= 200 && xhr.status < 300) {
+	// 				var responseData = JSON.parse(xhr.responseText);
+	// 				callback(null, responseData);
+	// 			} else {
+	// 				callback(new Error('Request failed with status: ' + xhr.status));
+	// 			}
+	// 		}
+	// 	};
+
+	// 	xhr.open(method, url, true);
+
+	// 	// 如果是 POST 请求，需要设置请求头
+	// 	if (method === 'POST') {
+	// 		xhr.setRequestHeader('Content-Type', 'application/json');
+	// 	}
+
+	// 	// 发送请求
+	// 	xhr.send(JSON.stringify(data));
+	// }
+	// // 使用示例
+	// ajax("http://localhost:3001/api/data", 'GET', function (error, response) {
+	// 	if (error) {
+	// 		console.error('Error:', error);
+	// 	} else {
+	// 		console.log('Response:', response);
+	// 	}
+	// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	function myAjax(method, url, callback, data) {
+		const xhr = new XMLHttpRequest()
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				if (xhr.status >= 200 && xhr.status < 300) {
+					callback(null, xhr.responseText)
+				} else {
+					callback('error', null)
+				}
+			}
+		}
+
+		xhr.open(method, url)
+		xhr.send()
+	}
+
+
+	myAjax('GET', 'http://localhost:3001/api/data', function (err, res) {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(res)
+		}
+	})
+</script>
+
+</html>
