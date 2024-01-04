@@ -1,4 +1,4 @@
-// // 快手
+// // // 快手
 
 // const queue = [];
 // let maxCon = 3;
@@ -68,4 +68,41 @@ function myRequest(urls, maxNum) {
 	for (let i = 0; i < times; i++) {
 		request();
 	}
+}
+
+const max = 3
+const promises = []
+const running = 0 
+function queue(){
+	if(running >= max) return false
+
+	const job = promises.shift()
+	
+	if(!job) return
+	running ++
+	request(job.param).then(
+		res => {
+			running--
+			job.resolve(res)
+			queue()
+		},
+		err => {
+			running--
+			job.reject(err)
+			queue()
+		}
+	)
+
+}
+
+
+function myRequest(){
+	return new Promise(() => {
+		promises.push({
+			param,
+			reslove,
+			reject
+		})
+		queue()
+	})
 }

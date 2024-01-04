@@ -36,25 +36,25 @@ console.log(newObj.sub !== obj.sub);
 console.log(newObj.arr[3] !== obj);
 console.log(newObj.arr[3] === newObj);
 
-let deepClone = (obj) => {
-	let map = new WeakMap();
+// let deepClone = (obj) => {
+// 	let map = new WeakMap();
 
-	let copy = (value) => {
-		if (obj === null || typeof obj !== "object") return value;
+// 	let copy = (value) => {
+// 		if (value === null || typeof value !== "object") return value;
 
-		if (!map.has(value)) return map.get(value);
+// 		if (map.has(value)) return map.get(value);
 
-		let newObj = Array.isArray(value) ? [] : {};
+// 		let newObj = Array.isArray(value) ? [] : {};
 
-		map.set(value, newObj);
+// 		map.set(value, newObj);
 
-		for (let key in value) {
-			if (obj.hasOwnProperty(key)) {
-				newObj[key] = copy(value[key]);
-			}
-		}
-		return result;
-	};
+// 		for (let key in value) {
+// 			if (value.hasOwnProperty(key)) {
+// 				newObj[key] = copy(value[key]);
+// 			}
+// 		}
+// 		return result;
+// 	};
 
-	return copy(obj);
-};
+// 	return copy(obj);
+// };

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  function curring(fn) {
+    return function curried(...args) {
+      if (fn.length <= args.length) {
+        return fn.apply(this, args);
+      } else {
+        return function (...newArgs) {
+          // 再次柯里化， 尾递归
+          console.log(1)
+          return curried.apply(this, args.concat(newArgs));
+        };
+      }
+    };
+  }
+
+  function add(a, b, c, d) {
+    return a + b + c + d;
+  }
+
+  let curriedAdd = curring(add);
+
+  console.log(curriedAdd(1));
+  console.log(curriedAdd(1)(2, 3));
+  console.log(curriedAdd(1)(2, 3)(4));
+</script>
+
+</html>
