@@ -62,3 +62,4 @@ type Zip2Result<tupleTest1, tupleTest2> = Zip2<
 	[1, 2, 3, 4, 5],
 	[2, 3, 4, 3, "dong"]
 >;
+1
