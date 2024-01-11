@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        .mainBody{
+            position: relative;
+            display: flex;
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+        }
+        .mainBody div{
+            width: 500px;
+            height: 300px;
+        }
+        .mainBody .swipper{
+            display: flex;
+            width: 2500px;
+            height: 300px;
+            position: absolute;
+            left: 0px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="swipper" style="left: 0;" onclick="shift">
+            <div style="background-color: aqua;"></div>
+            <div style="background-color: beige;"></div>
+            <div style="background-color: blue;"></div>
+            <div style="background-color: yellow;"></div>
+            <div style="background-color: brown;"></div>
+        </div>
+    </div>
+    <button onclick="shift()"></button>
+</body>
+
+
+<script>
+    const swipper = document.getElementsByClassName('swipper')[0]
+    function shift(){
+        console.log(1)
+        console.log(swipper.style.left)
+        let left = swipper.style.left
+        console.log(left)
+        console.log(parseInt(left.slice(0, left.length-2)))
+        swipper.style.left = parseInt(left) - 500 + 'px'
+
+    }
+</script>
+</html>
