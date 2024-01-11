@@ -62,4 +62,39 @@ type Zip2Result<tupleTest1, tupleTest2> = Zip2<
 	[1, 2, 3, 4, 5],
 	[2, 3, 4, 3, "dong"]
 >;
-1
+
+// 首字母大写
+type CapitalizeStr<Str extends string> = Str extends `${infer First}${infer Rest}` ? `${Uppercase<First>}${Rest}` : Str
+type CapitalizeStrResult = CapitalizeStr<'hasmokan'>
+// 下划线转驼峰法
+type CamelCase<Str extends string> = Str extends `${infer First}_${infer Second}${infer Rest}` ? `${First}${Uppercase<Second>}${CamelCase<Rest>}` : Str
+type CamelCaseReuslt = CamelCase<'hasmokan_dong_dong'>
+// 去除子串
+type DropSubStr<Str extends string, Sub extends string> = Str extends `${infer First}${Sub}${infer Rest}` ? `${DropSubStr<`${First}${Rest}`, Sub>}` : Str
+type DropSubStrResult = DropSubStr<'momohasmokanmomo', 'mo'>
+
+/* 函数 */
+
+// 添加参数类型
+type AppendAgument<Func extends Function, Arg> = Func extends (...args: infer Args) => infer ReturnType ? (...args: [...Args, Arg]) => ReturnType : never
+type AppendAgumentResult = AppendAgument<(a: number, b: string) => string, number>
+
+/* 索引类型 */
+// 索引的修改
+type Mapping<O extends Object> = {
+	[K in keyof O] : O[K]
+}
+type MappingResult = Mapping<{ a: 1, b: string }>
+
+
+// 对象重映射,key大写
+type UppercaseKey<O extends Object> = {
+	[K in keyof O as Uppercase<K & string>] : O[K]
+}
+type UppercaseKeyResult = UppercaseKey<{ a: 1, b: string }>
+
+type UppercaseKeyByUsingRecord<O extends Record<string, any>> = {
+	[K in keyof O as Uppercase<K & string>] : O[K]
+}
+
+type UppercaseKeyResult2 = UppercaseKey<{ a: 1, b: string }>
