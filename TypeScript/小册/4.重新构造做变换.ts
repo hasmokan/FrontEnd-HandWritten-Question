@@ -89,7 +89,7 @@ type MappingResult = Mapping<{ a: 1, b: string }>
 
 // 对象重映射,key大写
 type UppercaseKey<O extends Object> = {
-	[K in keyof O as Uppercase<K & string>] : O[K]
+	[K in keyof O as Uppercase<K & string>] : O[K]	
 }
 type UppercaseKeyResult = UppercaseKey<{ a: 1, b: string }>
 
