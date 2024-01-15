@@ -1,3 +1,5 @@
+// 就是把构造函数在一个新的空对象上使用
+
 function myNew(constructor, ...args) {
   // 创建一个空对象
   const obj = {};
