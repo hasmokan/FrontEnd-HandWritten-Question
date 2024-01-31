@@ -23,26 +23,52 @@
             position: absolute;
             left: 0px;
         }
+        button{
+            width: 20px;
+            height: 20px;
+        }
+        
+        .leftButton{
+            position: absolute;
+            top: 50%;
+            left: 0px;
+            border-radius: 50%;
+        }
+
+        .rightButton{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            border-radius: 50%;
+        }
+
+        
 
     </style>
 </head>
 <body>
     <div class="mainBody">
-        <div class="swipper" style="left: 0;" onclick="shift">
+        <div class="swipper" style="left: 0;" >
             <div style="background-color: aqua;"></div>
             <div style="background-color: beige;"></div>
             <div style="background-color: blue;"></div>
             <div style="background-color: yellow;"></div>
             <div style="background-color: brown;"></div>
         </div>
+        <button class="leftButton" onclick="left()">&lt;</button>
+        <button class="rightButton" onclick="right()">&gt;</button>
     </div>
-    <button onclick="shift()"></button>
+
 </body>
 
 
 <script>
+    function scroll(obj, target){
+        
+    }
+
     const swipper = document.getElementsByClassName('swipper')[0]
-    function shift(){
+    function left(){
         console.log(1)
         console.log(swipper.style.left)
         let left = swipper.style.left
@@ -50,6 +76,11 @@
         console.log(parseInt(left.slice(0, left.length-2)))
         swipper.style.left = parseInt(left) - 500 + 'px'
 
+    }
+
+    function right(){
+        let left = swipper.style.left
+        swipper.style.left = parseInt(left) + 500 + 'px'
     }
 </script>
 </html>
