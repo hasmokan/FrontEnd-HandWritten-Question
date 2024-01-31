@@ -21,3 +21,28 @@ Person.prototype.say = function () {
 let p = myNew(Person, "xxx", 21)
 console.log(p) // Person { name: 'xxx', age: 21 }
 p.say() // xxx
+
+
+
+
+function inew(constructor, ...args){
+  // new obj
+  const obj = {}
+  // obj.prototype point to constructor
+  Object.setPrototypeOf(obj, constructor.prototype);
+  // call constructor
+  let result = constructor.apply(obj, args)
+  // judge result
+  return Object.prototype.toString.call(result) === '[object Object]' ? result : obj
+}
+
+class people{
+  constructor(name, age){
+    this.name = name
+    this.age = age
+  }
+}
+
+let per = inew(Person, 'hah', 123)
+// let per = new people('hah', 123)
+console.log(per)

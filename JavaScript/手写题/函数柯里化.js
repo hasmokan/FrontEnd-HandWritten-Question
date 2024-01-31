@@ -1,6 +1,6 @@
-// function add(a, b, c, d) {
-// 	return a + b + c + d;
-// }
+function add(a, b, c, d, e) {
+	return a + b + c + d;
+}
 
 // function curry(fn) {
 // 	return function curried(...args) {
@@ -14,18 +14,20 @@
 // 	};
 // }
 
-// function curry(fn) {
-// 	return function curried(...args) {
-// 		if (fn.length <= args.length) {
-// 			return fn.apply(this, args);
-// 		} else {
-// 			return (...args2) => curried(...args, ...args2);
-// 		}
-// 	};
-// }
+function curry(fn) {
+	return function curried(...args) {
+		if (fn.length <= args.length) {
+			
+            return fn.apply(this, args);
+		} else {
+			console.log(fn.length,1)
+            return (...args2) => curried(...args, ...args2);
+		}
+	};
+}
 
-// let curryAdd = curry(add);
+let curryAdd = curry(add);
 
-// console.log(curryAdd(1)(2)(3)(4));
+console.log(curryAdd(1)(2)(3)(4));
 
 console.log(typeof +"255");

@@ -11,3 +11,18 @@ function myInstanceOf(left, right){
 function f(){}
 
 console.log(myInstanceOf(new f(), Object))
+
+
+
+function myInstanceof1(obj, proto1){
+  p = Object.getPrototypeOf(obj)
+  proto = proto1.prototype
+  while(true){
+    if(!p) return false
+    if(p === proto) return true
+    p = Object.getPrototypeOf(p)
+  }
+
+}
+
+console.log(myInstanceof1(new f(), Object))
