@@ -14,3 +14,16 @@ function add(){
 }
 
 console.log(add(1,2,23,4))
+
+
+
+
+function curried(fn){
+    return function curried(...args){
+        if(fn.length >= args.length){
+            return fn.apply(this, args)
+        } else {
+            return (...args2) => curried(...args, ...args2)
+        }
+    }
+}
